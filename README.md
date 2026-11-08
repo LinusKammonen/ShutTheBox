@@ -1,7 +1,5 @@
 # Shut the Box
 
-Ett multiplayer-baserat Shut the box. 
-
 Frontenden byggdes först mot ett färdigt API som en skoluppgift. I det här projektet har jag skapat en egen backend med hjälp av AI: spelmotor, REST-API och realtidsuppdateringar med SignalR. 
 
 ## Stack
