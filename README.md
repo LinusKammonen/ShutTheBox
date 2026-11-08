@@ -19,10 +19,4 @@ Frontenden byggdes först mot ett färdigt API som en skoluppgift. I det här pr
 
 ## Kom igång
 
-Kräver [.NET 10 SDK](https://dotnet.microsoft.com/download).
-
-```bash
-dotnet run --project ShutTheBox_Api --launch-profile http
-```
-
-Öppna sedan http://localhost:5162 och logga in med valfritt användarnamn. Öppna ett inkognitofönster med ett annat namn för att testa multiplayer.
+Klona ner projektet och öppna sedan http://localhost:5162 och logga in med valfritt användarnamn. Öppna ett inkognitofönster med ett annat namn för att testa multiplayer.
