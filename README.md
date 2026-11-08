@@ -1,6 +1,6 @@
 # Shut the Box
 
-Ett multiplayer-baserat Shut the box i med backend i C#. 
+Ett multiplayer-baserat Shut the box. 
 
 Frontenden byggdes först mot ett färdigt API som en skoluppgift. I det här projektet har jag ersatt det med en egen backend: spelmotor, REST-API och realtidsuppdateringar med SignalR.
 
