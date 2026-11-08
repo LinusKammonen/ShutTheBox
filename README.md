@@ -7,7 +7,6 @@ Frontenden byggdes först mot ett färdigt API som en skoluppgift. I det här pr
 ## Stack
 
 - **Backend:** C# / ASP.NET Core Web API, SignalR
-- **Spelmotor:** fristående klassbibliotek utan webbberoenden
 - **Frontend:** HTML, CSS och JavaScript
 
 ## Hur man spelar
