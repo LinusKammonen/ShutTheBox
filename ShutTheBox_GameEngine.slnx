@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="ShutTheBox_Api/ShutTheBox_Api.csproj" />
+  <Project Path="ShutTheBox_GameEngine.Tests/ShutTheBox_GameEngine.Tests.csproj" />
+  <Project Path="ShutTheBox_GameEngine/ShutTheBox_GameEngine.csproj" />
+</Solution>

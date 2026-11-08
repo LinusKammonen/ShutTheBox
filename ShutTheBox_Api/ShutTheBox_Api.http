@@ -1,0 +1,56 @@
+@host = http://localhost:5162
+
+# @name login
+POST {{host}}/v1/auth/login
+Content-Type: application/json
+
+{ "username": "Linus" }
+
+###
+
+GET {{host}}/v1/auth/me
+Authorization: Bearer {{login.response.body.$.token}}
+
+###
+
+# @name solo
+POST {{host}}/v1/rooms
+Authorization: Bearer {{login.response.body.$.token}}
+Content-Type: application/json
+
+{ "minPlayers": 1 }
+
+###
+
+POST {{host}}/v1/games/{{solo.response.body.$.state.gameCode}}/roll
+Authorization: Bearer {{login.response.body.$.token}}
+
+###
+
+POST {{host}}/v1/games/{{solo.response.body.$.state.gameCode}}/move
+Authorization: Bearer {{login.response.body.$.token}}
+Content-Type: application/json
+
+{ "selectedNumbers": [4, 5] }
+
+###
+
+GET {{host}}/v1/games/{{solo.response.body.$.state.gameCode}}/state
+Authorization: Bearer {{login.response.body.$.token}}
+
+###
+
+GET {{host}}/v1/games/active
+Authorization: Bearer {{login.response.body.$.token}}
+
+###
+
+GET {{host}}/v1/rooms/open
+Authorization: Bearer {{login.response.body.$.token}}
+
+###
+
+POST {{host}}/v1/games/{{solo.response.body.$.state.gameCode}}/leave
+Authorization: Bearer {{login.response.body.$.token}}
+
+###

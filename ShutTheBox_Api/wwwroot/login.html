@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logga in</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/site.css">
+    <link rel="stylesheet" href="/CSS/homepage.css">
+</head>
+<body>
+    <div class="stb-page">
+        <header class="stb-header">
+            <div class="stb-header-inner">
+                <a href="/index.html" class="stb-logo">
+                    SHUT<span class="stb-logo-accent">THE</span>BOX
+                </a>
+            </div>
+        </header>
+        <main class="stb-main">
+            <h1 class="stb-title">Logga in</h1>
+            <h2 class="stb-subtitle">Välj ett användarnamn för att börja spela.</h2>
+            <section class="stb-card">
+                <form id="loginForm">
+                    <h2 class="stb-card-title">Användarnamn:
+                        <input type="text" id="username" minlength="2" maxlength="20" required autofocus>
+                    </h2>
+                    <div class="gap"></div>
+                    <button type="submit" class="stb-btn stb-btn--primary">Logga in</button>
+                </form>
+                <p id="loginError" class="stb-message"></p>
+            </section>
+        </main>
+        <footer class="stb-footer">
+            <span class="stb-footer-dot">Copyright Linus kammonen</span>
+        </footer>
+    </div>
+</body>
+</html>
+<script src="/JS/login.js" type="module"></script>

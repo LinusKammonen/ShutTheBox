@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/site.css">
+    <link rel="stylesheet" href="/CSS/homepage.css">
+</head>
+<body>
+    <div class="stb-page">
+
+        <header class="stb-header">
+            <div class="stb-header-inner">
+                <a href="/index.html" class="stb-logo">
+                    SHUT<span class="stb-logo-accent">THE</span>BOX
+                </a>
+                <div id="currentUser" class="stb-nav"></div>
+                <nav class="stb-nav" aria-label="Primary">
+                    <a href="/index.html" class="stb-nav-link stb-nav-link--active aria-current=page">HEM</a>
+                    <a href="/game.html" class="stb-nav-link stb-nav-link">SPELA</a>
+                    <a href="#rules-heading" class="stb-nav-link">REGLER</a>
+                </nav>
+            </div>
+        </header>
+        <main class="stb-main">
+           <h1 class="stb-title">Välkommen</h1>
+            <h2 id = "textWelcome" class="stb-subtitle">Hej gäst! Ta en titt över våra öppna spelrum.</h2>
+            <section class="stb-card">
+                <h2 id="own-lobby-heading" class="stb-card-title">Mina aktiva spelrum</h2>
+                <div id ="own-lobby-holder" class="stb-lobby-holder"></div>
+            </section>            
+            <div class="gap"></div>
+            <section class = "stb-card">
+                 <h2 id="open-lobby-heading" class="stb-card-title">Öppna spelrum</h2>
+                    <button id="btn-create-multiplayer-room" class="stb-btn stb-btn--primary">Skapa nytt rum</button>
+                    <div class="gap"></div>
+                 <div id ="open-lobby-holder" class="stb-lobby-holder">         
+                 </div>
+            </section>
+            <div class="gap"></div>
+            <section class="stb-card">              
+               <h2 id="active-lobby-heading" class="stb-card-title">Aktiva spelrum</h2>       
+               <div id ="active-lobby-holder" class="stb-lobby-holder">            
+            </div>
+            </section>
+        </main>
+        <dialog id="popupNewRoom" class="stb-card-popup">
+            <div class="right">
+                <button id = "x" class="stb-btn">X</button>
+            </div>
+            <h1 id="popup-title" class="stb-title">Create new game</h1>
+            <h2 class="stb-card-title">Enter room name: <input type="text" id="lobbyName"></h2>
+            <h2 class="stb-card-title">Enter min players: 
+            <select name="minPlayers" id=minPlayers>
+                
+            </select>
+            <h2 class="stb-card-title">Enter max players: 
+            <select name="maxPlayers" id=maxPlayers>
+                <option value="2">2 players</option>
+                <option value="3">3 players</option>
+                <option value="4">4 players</option>
+                <option value="5">5 player</option>
+                <option value="6">6 players</option>
+                <option value="7">7 players</option>
+                <option value="8">8 players</option>
+            </select>
+            </h2>                      
+            <!--https://stackoverflow.com/questions/2906582/how-do-i-create-an-html-button-that-acts-like-a-link-->
+                <button id="btn-create-room" class="stb-btn stb-btn--primary">Create room</button>
+            
+        </dialog>
+        <dialog id="popup" class="stb-card">
+            <h1 id="popup-title" class="stb-card-title">ERROR!</h1>
+            <h2 id="popup-message" class="stb-card-title"></h2>                      
+            <div class="popup-btn">
+                <button id="popup-btn-ok" class="stb-btn stb-btn--primary">OK</button>
+            </div>
+        </dialog>
+        <footer class="stb-footer">
+            <span class="stb-footer-dot">Copyright Linus kammonen</span>
+        </footer>
+    </div>
+</body>
+</html>
+<script src =js/app.js type="module"></script>
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>

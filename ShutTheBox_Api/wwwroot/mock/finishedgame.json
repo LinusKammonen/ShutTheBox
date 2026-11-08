@@ -1,0 +1,31 @@
+{
+    "gameCode": "P7ELN6",
+    "roomCode": "CEBUNR",
+    "gameSessionId": "c96ac83b-cabb-4a3d-881e-c814f23eae0a",
+    "startedAtUtc": "2026-09-15T12:25:46.714523+00:00",
+    "endedAtUtc": "2026-09-17T15:26:55.779532+00:00",
+    "playerCount": 1,
+    "endReason": "Completed",
+    "hasWinner": true,
+    "tiedWinners": false,
+    "players": [
+        {
+            "userId": "f73ea706-4ec7-4375-beb9-70b779f63191",
+            "name": "Linus Kammonen",
+            "isWinner": true,
+            "placement": 1,
+            "finalScore": 18,
+            "exitReason": "NoValidMoves",
+            "abandoned": false
+        },
+        {
+            "userId": "f73ea706-4ec7-4375-beb9-70b779f63191",
+            "name": "Linus Kammonen",
+            "isWinner": true,
+            "placement": 2,
+            "finalScore": 18,
+            "exitReason": "NoValidMoves",
+            "abandoned": false
+        }
+    ]
+}

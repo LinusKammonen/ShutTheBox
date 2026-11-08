@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shut the Box</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/site.css">
+    <link rel="stylesheet" href="/CSS/game.css">
+</head>
+
+<body>
+    <div id = "mainPage" class="stb-page">
+        <header class="stb-header">
+            <div class="stb-header-inner">
+                <a href="/index.html" class="stb-logo">
+                    SHUT<span class="stb-logo-accent">THE</span>BOX
+                </a>
+                <div id="currentUser" class="stb-nav">   
+                </div>
+                <nav class="stb-nav" aria-label="Primary">
+                    <a href="/index.html" class="stb-nav-link">HEM</a>
+                    <a href="/game.html" class="stb-nav-link stb-nav-link--active" aria-current="page">SPELA</a>
+                    <a href="#rules-heading" class="stb-nav-link">REGLER</a>
+                </nav>
+            </div>
+        </header>
+        <main class="stb-main">
+            <h1 class="stb-title">Shut the Box</h1>
+            <p class="stb-subtitle">Slå tärningarna. Stäng brickorna. Slå ditt rekord.</p>
+            <section id="roomCard" class="stb-card stb-room-card" aria-labelledby="room-heading">
+                <h2 id="room-heading" class="stb-card-title">Rum</h2>
+                <div class="stb-room-info">
+                    <p id="roomName" class="stb-room-name">Rumsnamn</p>
+                    <p class="stb-room-count">
+                        <span id="roomPlayerCount">1</span>/<span id="roomMaxPlayers">4</span> spelare
+                    </p>
+                </div>
+                <p id="roomStatus" class="stb-room-status stb-room-status--waiting" role="status" aria-live="polite">
+                    <span class="stb-room-status-dot" aria-hidden="true"></span>
+                    <span id="roomStatusText">Väntar på spelare</span>
+                </p>
+                <p id="roomHint" class="stb-room-hint">Endast värden kan starta spelet.</p>
+                <div class="stb-room-actions">
+                    <button id="leaveRoom" type="button" class="stb-btn stb-btn--leave">Lämna rum</button>
+                    <button id="startGame" type="button" class="stb-btn stb-btn--primary">Starta spel</button>
+                </div>
+            </section>
+            <section class="stb-card stb-players-card" aria-labelledby="players-heading">
+                <p id = "spectators" class ="stb-message">Åskådare:</p>
+                <h2 id="players-heading" class="stb-card-title">Spelare</h2>
+                <ol class="stb-players">
+                </ol>
+            </section>
+            <div class="stb-layout">
+                <section class="stb-card stb-board-card" aria-labelledby="board-heading">
+                    <h2 id="board-heading" class="stb-card-title">Boxen</h2>
+                    <ol id="tilesList" class="stb-tiles" aria-label="Number tiles 1 to 9">
+                        <li><button id="tile1" type="button" class="stb-tile" data-value="1">1</button></li>
+                        <li><button id="tile2" type="button" class="stb-tile" data-value="2">2</button></li>
+                        <li><button id="tile3" type="button" class="stb-tile" data-value="3">3</button></li>
+                        <li><button id="tile4" type="button" class="stb-tile" data-value="4">4</button></li>
+                        <li><button id="tile5" type="button" class="stb-tile" data-value="5">5</button></li>
+                        <li><button id="tile6" type="button" class="stb-tile" data-value="6">6</button></li>
+                        <li><button id="tile7" type="button" class="stb-tile" data-value="7">7</button></li>
+                        <li><button id="tile8" type="button" class="stb-tile" data-value="8">8</button></li>
+                        <li><button id="tile9" type="button" class="stb-tile" data-value="9">9</button></li>
+                    </ol>
+                    <p class="stb-board-hint">Klicka på brickorna som matchar summan för att stänga dom.</p>
+                </section>
+                <aside class="stb-sidebar">
+                    <section id="diceHolder" class="stb-card stb-dice-card" aria-labelledby="dice-heading">
+                        <h2 id="dice-heading" class="stb-card-title">Tärnngar</h2>
+                        <div class="stb-dice">
+                            <div id="die1" class="stb-die" data-value="0" aria-label="Die showing 4">
+                                <span class="stb-pip stb-pip--a"></span>
+                                <span class="stb-pip stb-pip--b"></span>
+                                <span class="stb-pip stb-pip--c"></span>
+                                <span class="stb-pip stb-pip--d"></span>
+                                <span class="stb-pip stb-pip--e"></span>
+                                <span class="stb-pip stb-pip--f"></span>
+                                <span class="stb-pip stb-pip--g"></span>
+                                <span class="stb-pip stb-pip--h"></span>
+                                <span class="stb-pip stb-pip--i"></span>
+                            </div>
+                            <div id="die2" class="stb-die" data-value="0" aria-label="Die showing 3">
+                                <span class="stb-pip stb-pip--a"></span>
+                                <span class="stb-pip stb-pip--b"></span>
+                                <span class="stb-pip stb-pip--c"></span>
+                                <span class="stb-pip stb-pip--d"></span>
+                                <span class="stb-pip stb-pip--e"></span>
+                                <span class="stb-pip stb-pip--f"></span>
+                                <span class="stb-pip stb-pip--g"></span>
+                                <span class="stb-pip stb-pip--h"></span>
+                                <span class="stb-pip stb-pip--i"></span>
+                            </div>
+                        </div>
+                        <p class="stb-dice-sum">Summa: <strong id="sum"></strong></p>
+                        <button id ="roll" type="button" class="stb-btn stb-btn--primary">Slå tärningarna</button>
+                    </section>
+                    <section class="stb-card stb-status-card" aria-labelledby="status-heading">
+                        <h2 id="status-heading" class="stb-card-title">Status</h2>
+                        <dl class="stb-stats">
+                            <div class="stb-stat">
+                                <dt>Brickor kvar</dt>
+                                <dd id="tilesLeft"></dd>
+                            </div>
+                        </dl>
+                        <h2 id="result"></h2>
+                        <p id="instruction" class="stb-message">Player 1: pick tiles that add up to your roll.</p>
+                        <div class="stb-status-actions">
+                            <button id ="newGame" type="button" class="stb-btn stb-btn--ghost">Nytt spel</button>
+                            <button id="leaveGame" type="button" class="stb-btn stb-btn--leave">Lämna spel</button>
+                        </div>
+                    </section>
+
+                </aside>
+            </div>
+            <dialog id="popup" class="stb-card">
+            <h1 id="popup-title" class="stb-card-title">ERROR!</h1>
+            <h2 id="popup-message" class="stb-card-title"></h2>                      
+           <div class="popup-btn">
+                <button id="popup-btn-ok" class="stb-btn stb-btn--primary">OK</button>
+           </div>
+            </dialog>
+            <section class="stb-card stb-rules-card" aria-labelledby="rules-heading">
+                <h2 id="rules-heading" class="stb-card-title">Hur man spelar</h2>
+                <ol class="stb-rules-list">
+                    <li>Kasta tärningarna och lägg ihop resultatet.</li>
+                    <li>Fäll ner valfri öppen bricka, eller en kombination av brickor, vars summa matchar tärningskastet.</li>
+                    <li>Fortsätt att slå och fälla brickor så länge det finns ett giltigt drag kvar.</li>
+                    <li>Omgången tar slut när du har fällt alla brickor, eller när inga öppna brickor kan matcha summan.</li>
+                    <li>Ju lägre kvarvarande poäng desto bättre – att stänga hela lådan ger ett perfekt spel.</li>
+                </ol>
+            </section>
+        </main>        
+        <dialog id="popupGameOver" class="stb-card-popup">
+            <div class="right">
+               <button id = "x" class="stb-btn">X</button>
+            </div>
+            <h1 class="stb-title">Färdigspelat!</h1>
+            <h2 class="stb-logo">Resultat</h2>
+            <ol class="stb-leaderboard">   
+            </ol>
+            <form action = "index.html" class="popup-btn">
+               <button id="backToLobby" class="stb-btn stb-btn--primary" href="/game.html">Tillbaka till startsidan</button>
+            </form>
+        </dialog>
+        <footer class="stb-footer">
+            <span class="stb-footer-dot">Copyright Linus kammonen</span>
+        </footer>
+    </div>
+</body>
+</html>
+<script src =js/game.js type="module"></script>
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
+

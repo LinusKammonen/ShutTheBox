@@ -1,0 +1,452 @@
+:root {
+    --stb-mono: 'Share Tech Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    --stb-display: 'Press Start 2P', var(--stb-mono);
+
+    --stb-radius: 3px;
+
+    
+    --stb-black: #000000;
+    --stb-bg: #09090b;
+    --stb-bg-elevated: #18181b;
+    --stb-border: #27272a;
+    --stb-border-strong: #3f3f46;
+    --stb-text: #f4f4f5;
+    --stb-text-muted: #d4d4d8;
+    --stb-text-faint: #a1a1aa;
+
+    --stb-red-975: #1a0505;
+    --stb-red-950: #450a0a;
+    --stb-red-900: #7f1d1d;
+    --stb-red-800: #991b1b;
+    --stb-red-700: #b91c1c;
+    --stb-red-400: #f87171;
+    --stb-red-300: #fca5a5;
+    --stb-red-200: #fecaca;
+
+    /* Derived tones - built from the palette above so they stay in sync */
+    --stb-bg-elevated-soft: color-mix(in oklab, var(--stb-bg-elevated) 60%, transparent);
+    --stb-bg-elevated-medium: color-mix(in oklab, var(--stb-bg-elevated) 85%, transparent);
+    --stb-scrollbar-track: var(--stb-bg);
+    --stb-scrollbar-thumb: var(--stb-border-strong);
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    color-scheme: dark;
+}
+
+body {
+    margin: 0;
+    min-height: 100dvh;
+    background-color: var(--stb-bg);
+    color: var(--stb-text);
+    font-family: var(--stb-mono);
+}
+/* https://stackoverflow.com/questions/10312857/blue-and-purple-default-links-how-to-remove  --- för att få bort fula lila texter*/
+a {
+    text-decoration: none;
+    color: var(--stb-text)
+    
+    
+}
+#popupNewRoom {
+    width: fit-content;
+    height: fit-content;
+    position: fixed;
+}
+
+/* https://stackoverflow.com/questions/19467693/how-to-make-popup-look-at-the-centre-of-the-screen -- för att centrera popupen*/ 
+
+#popup {
+    max-width: 400;
+    height:max-content;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+}
+#x {
+    right: 50%;
+    width:10px;
+    height:10px;
+}
+
+#popup-title {
+    font-size: 1.3rem;
+    color: var(--stb-text);
+    margin: 40px;
+}
+
+/* https://stackoverflow.com/questions/7693224/how-do-i-right-align-div-elements -- för att positionera åt höger i diven*/
+.right {
+    float:right;
+    position:relative;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+
+.fill-div {
+    height:100%;
+    width:100%;
+    
+}
+
+.stb-page {
+    display: flex;
+    min-height: 100dvh;
+    flex-direction: column;
+    position: relative;
+    isolation: isolate;
+}
+
+.stb-page::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: repeating-linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--stb-red-900) 8%, transparent) 0px,
+        color-mix(in oklab, var(--stb-red-900) 8%, transparent) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    animation: stb-scanline-flicker 6s steps(2, jump-none) infinite;
+}
+
+@keyframes stb-scanline-flicker {
+    0%, 96% { opacity: 1; }
+    97% { opacity: 0.85; }
+    98% { opacity: 1; }
+    99% { opacity: 0.9; }
+}
+
+.stb-page > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== Header ===== */
+.stb-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid color-mix(in oklab, var(--stb-red-950) 60%, transparent);
+    background-color: color-mix(in oklab, var(--stb-red-950) 18%, transparent);
+    backdrop-filter: blur(8px);
+}
+
+.stb-header-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+}
+
+.stb-logo {
+    font-family: var(--stb-display);
+    font-weight: 400;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    color: var(--stb-text);
+    text-decoration: none;
+    filter: drop-shadow(0 0 10px color-mix(in oklab, var(--stb-black) 35%, transparent));
+}
+
+.stb-logo-accent {
+    color: var(--stb-red-400);
+    margin: 0 0.15em;
+}
+
+.stb-nav {
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+}
+
+.stb-nav-link {
+    font-family: var(--stb-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--stb-text-muted);
+    text-decoration: none;
+    padding: 0.5rem 0.1rem;
+    border-bottom: 2px solid transparent;
+    transition: color 150ms ease, border-color 150ms ease;
+}
+
+.stb-nav-link:hover {
+    color: var(--stb-text);
+    border-color: var(--stb-red-700);
+}
+
+.stb-nav-link--active {
+    color: var(--stb-text);
+    border-color: var(--stb-red-400);
+}
+
+/* ===== Main layout ===== */
+.stb-main {
+    flex: 1;
+    max-width: 72rem;
+    width: 100%;
+    margin: auto;
+    padding: 2.5rem 1rem 4rem;
+}
+
+.stb-title {
+    font-family: var(--stb-display);
+    font-weight: 400;
+    font-size: clamp(1.15rem, 3.6vw, 1.9rem);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    text-align: center;
+    text-shadow:
+        0 0 8px color-mix(in oklab, var(--stb-red-400) 55%, transparent),
+        0 0 20px color-mix(in oklab, var(--stb-red-900) 45%, transparent);
+    animation: stb-title-flicker 5s linear infinite;
+}
+
+@keyframes stb-title-flicker {
+    0%, 92%, 100% {
+        text-shadow:
+            0 0 8px color-mix(in oklab, var(--stb-red-400) 55%, transparent),
+            0 0 20px color-mix(in oklab, var(--stb-red-900) 45%, transparent);
+    }
+    93% {
+        text-shadow:
+            0 0 3px color-mix(in oklab, var(--stb-red-400) 30%, transparent),
+            0 0 8px color-mix(in oklab, var(--stb-red-900) 25%, transparent);
+    }
+    94% {
+        text-shadow:
+            0 0 8px color-mix(in oklab, var(--stb-red-400) 55%, transparent),
+            0 0 20px color-mix(in oklab, var(--stb-red-900) 45%, transparent);
+    }
+}
+
+.stb-subtitle {
+    margin: 0.5rem 0 2.5rem;
+    text-align: center;
+    color: var(--stb-text-faint);
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+}
+
+.popup-btn {
+    align-items: center;   
+}
+
+
+.popup-btn-holder{
+    display: flex;
+    align-items: center;
+    width: max-content;
+    justify-content: center;
+}
+
+.stb-btn--primary {
+    color: var(--stb-text);
+    background: linear-gradient(160deg, var(--stb-red-800), var(--stb-red-950));
+    box-shadow:
+        0 0 0 1px color-mix(in oklab, var(--stb-red-950) 60%, transparent) inset,
+        0 4px 0 var(--stb-red-950);
+    border: none;
+    margin-bottom: 7px;
+    
+}
+
+.stb-btn--primary:hover {
+    filter: brightness(1.12);
+}
+
+.stb-btn--primary:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--stb-red-950) 60%, transparent) inset;
+}
+
+.st-btn--ok:hover {
+    filter: brightness(1.7);
+}
+.stb-btn--cancel {
+    color: var(--stb-text);
+    background: linear-gradient(160deg, var(--stb-border-strong), var(--stb-border-strong));
+    box-shadow:
+        0 0 0 1px color-mix(in oklab, var( --stb-black) 60%, transparent) inset,
+        0 4px 0 var( --stb-black);
+    border: none;
+    margin: 10px;
+}
+
+.stb-card {
+    background-color: var(--stb-bg-elevated-soft);
+    border: 1px solid var(--stb-border);
+    border-radius: var(--stb-radius);
+    padding: 1.5rem;
+    box-shadow:
+        0 0 0 2px var(--stb-bg),
+        0 0 0 3px color-mix(in oklab, var(--stb-red-900) 55%, transparent);
+    height: auto;
+    
+}
+
+.gap {
+    height:25px;
+}
+
+.stb-card-lobby {
+    background-color: var(--stb-bg-elevated-medium);
+    border: 1px solid var(--stb-border);
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.stb-card-popup {
+    background-color: var(--stb-bg-elevated-medium);
+    border: 1px solid var(--stb-border);
+    padding: 30px;
+}
+
+.stb-card-title {
+    font-family: var(--stb-display);
+    font-weight: 400;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--stb-red-300);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dashed var(--stb-border-strong);
+}
+
+.stb-btn {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--stb-display);
+    font-weight: 400;
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    border-radius: var(--stb-radius);
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    transition: filter 150ms ease, outline-color 150ms ease, background-color 150ms ease, transform 100ms steps(2, jump-none), box-shadow 100ms steps(2, jump-none);
+}
+
+/* ===== Footer ===== */
+.stb-footer {
+    border-top: 1px solid var(--stb-border);
+    padding: 1.25rem 1rem 2rem;
+    text-align: center;
+}
+
+.stb-footer-link {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--stb-text-faint);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 150ms ease;
+}
+
+.stb-footer-link:hover {
+    color: var(--stb-text);
+}
+
+.stb-footer-dot {
+    color: var(--stb-text-faint);
+    margin: 0 0.5rem;
+}
+.stb-loading {
+    position: fixed;
+    inset: auto auto 24px 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    width: max-content;
+    max-width: calc(100vw - 32px);
+    display: none;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    color: var(--stb-text);
+    background-color: var(--stb-bg-elevated);
+    border: 1px solid var(--stb-red-800);
+    border-radius: var(--stb-radius);
+    box-shadow: 0 0 18px color-mix(in oklab, var(--stb-red-700) 35%, transparent);
+    font-family: var(--stb-mono);
+    font-size: 1rem;
+    z-index: 1000;
+}
+
+.stb-loading--visible {
+    display: flex;
+}
+
+.stb-loading-spinner {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    border: 3px solid var(--stb-red-950);
+    border-top-color: var(--stb-red-400);
+    border-radius: 50%;
+    animation: stb-spin 0.7s linear infinite;
+}
+
+@keyframes stb-spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .stb-loading-spinner {
+        animation-duration: 2s;
+    }
+}
+
+body.stb-busy {
+    cursor: progress;
+}
+
+body.stb-busy button,
+body.stb-busy .stb-lobby {
+    pointer-events: none;
+}
+
+.stb-inline-loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--stb-text-muted);
+    font-family: var(--stb-mono);
+}
+
+.stb-inline-loading .stb-loading-spinner {
+    width: 14px;
+    height: 14px;
+}
+
+.stb-btn .stb-inline-loading {
+    color: inherit;
+}
+
+.stb-inline-loading--beside {
+    margin-left: 12px;
+    vertical-align: middle;
+    font-size: 0.8rem;
+    font-weight: normal;
+    letter-spacing: normal;
+    text-transform: none;
+}
